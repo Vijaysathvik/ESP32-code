@@ -1,0 +1,27 @@
+import requests
+
+# Replace this with your real GPS coordinates (latitude and longitude)
+latitude = 12.9716
+longitude = 77.5946
+
+# Replace this with your actual API key
+api_key = 'YOUR_API_KEY'
+
+# URL to search for nearby police stations
+url = (
+    f"https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
+    f"location={latitude},{longitude}&"
+    f"radius=5000&"
+    f"type=police&"
+    f"key={api_key}"
+)
+
+# Make the request to Google
+response = requests.get(url)
+
+# Check if the request was successful
+if response.status_code == 200:
+    data = response.json()  # Convert the response into JSON format
+    print(data)  # This prints the list of nearby police stations
+else:
+    print("Error:", response.status_code)
